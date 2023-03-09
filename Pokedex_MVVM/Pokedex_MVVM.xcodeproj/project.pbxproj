@@ -60,6 +60,14 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		29EE290929BA889A0065AD28 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				29811DC429A81C5E00B2116E /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		413CA0F127AB4CC7006D7F15 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +87,7 @@
 		413CA0FC27AB4CC7006D7F15 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				29EE290929BA889A0065AD28 /* Helpers */,
 				413CA11A27AC50D5006D7F15 /* Model */,
 				29811DBB29A7F97F00B2116E /* Model Controller */,
 				413CA11727AC50A4006D7F15 /* View Controllers */,
@@ -111,7 +120,6 @@
 				413CA0FF27AB4CC7006D7F15 /* SceneDelegate.swift */,
 				413CA10627AB4CC8006D7F15 /* Assets.xcassets */,
 				413CA10B27AB4CC8006D7F15 /* Info.plist */,
-				29811DC429A81C5E00B2116E /* Constants.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,7 +159,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 413CA0F527AB4CC7006D7F15 /* Build configuration list for PBXProject "Pokedex" */;
+			buildConfigurationList = 413CA0F527AB4CC7006D7F15 /* Build configuration list for PBXProject "Pokedex_MVVM" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -393,7 +401,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		413CA0F527AB4CC7006D7F15 /* Build configuration list for PBXProject "Pokedex" */ = {
+		413CA0F527AB4CC7006D7F15 /* Build configuration list for PBXProject "Pokedex_MVVM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				413CA10C27AB4CC8006D7F15 /* Debug */,
