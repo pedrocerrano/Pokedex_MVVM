@@ -16,16 +16,16 @@ class PokemonTableViewCell: UITableViewCell {
     
     
     //MARK: - FUNCTIONS
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        pokemonNameLabel.text        = nil
-        pokemonIDLabel.text          = nil
-        pokemonSpriteImageView.image = nil
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        pokemonNameLabel.text        = nil
+//        pokemonIDLabel.text          = nil
+//        pokemonSpriteImageView.image = nil
+//    }
     
     
     func updateUI(forPokemon pokemon: PokemonResults) {
-        NetworkingController.fetchPokemon(with: pokemon.url) { [weak self] result in
+        NetworkingService.fetchPokemon(with: pokemon.url) { [weak self] result in
             switch result {
             case .success(let pokemon):
                 self?.fetchSprite(forPokemon: pokemon)
@@ -38,7 +38,7 @@ class PokemonTableViewCell: UITableViewCell {
     
     
     func fetchSprite(forPokemon pokemon: Pokemon) {
-        NetworkingController.fetchSprite(for: pokemon.sprites.frontShiny) { [weak self] result in
+        NetworkingService.fetchSprite(for: pokemon.sprites.frontShiny) { [weak self] result in
             switch result {
             case .success(let sprite):
                 DispatchQueue.main.async {

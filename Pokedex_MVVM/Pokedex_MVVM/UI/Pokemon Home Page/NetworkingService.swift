@@ -1,5 +1,5 @@
 //
-//  NetworkingController.swift
+//  NetworkingService.swift
 //  Pokedex_Codable
 //
 //  Created by iMac Pro on 2/28/23.
@@ -7,30 +7,28 @@
 
 import UIKit
 
-class NetworkingController {
+class NetworkingService {
     
-    static func fetchPokedex(with url: String, completion: @escaping (Result<TopLevel, NetworkError>) -> Void) {
+    let service = APIService()
+    
+    func fetchPokedex(with url: String, completion: @escaping (Result<TopLevel, NetworkError>) -> Void) {
         guard let finalURL = URL(string: url) else { completion(.failure(.invalidURL)) ; return }
         print("fetchPokedex Final URL: \(finalURL)")
         
-        URLSession.shared.dataTask(with: finalURL) { data, response, error in
-            if let error = error {
+        let request = URLRequest(url: finalURL)
+        service.perform(request) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let topLevel = try JSONDecoder().decode(TopLevel.self, from: data)
+                    completion(.success(topLevel))
+                } catch {
+                    completion(.failure(.unableToDecode))
+                }
+            case .failure(let error):
                 completion(.failure(.thrownError(error)))
-                return
             }
-            
-            if let response = response as? HTTPURLResponse {
-                print("fetchPokedex Status Code: \(response.statusCode)")
-            }
-            
-            guard let data = data else { completion(.failure(.noData)) ; return }
-            do {
-                let topLevel = try JSONDecoder().decode(TopLevel.self, from: data)
-                completion(.success(topLevel))
-            } catch {
-                completion(.failure(.unableToDecode))
-            }
-        }.resume()
+        }
     }
     
     static func fetchPokemon(with url: String, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {

@@ -35,7 +35,7 @@ class PokemonDetailVC: UIViewController {
     //MARK: - FUNCTIONS
     func updateUI() {
         guard let pokemon = pokemon else { return }
-        NetworkingController.fetchSprite(for: pokemon.sprites.frontShiny) { result in
+        NetworkingService.fetchSprite(for: pokemon.sprites.frontShiny) { result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
